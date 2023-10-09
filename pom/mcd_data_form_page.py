@@ -46,7 +46,7 @@ class McdDataFormPage:
 
         wait = True
         while wait:
-            if os.path.exists(f"/Users/juan.orozco/Downloads/{file_name}"):
+            if os.path.exists(os.getenv("DEFAULT_DOWNLOAD_DIR") + file_name):
                 wait = False
             else:
                 continue
