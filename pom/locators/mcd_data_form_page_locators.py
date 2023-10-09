@@ -1,4 +1,5 @@
 class McdDataFormPageLocators:
+    FORM_TITLE = ("XPATH", "//div[@class='title']/h1")
     GROUP_RESULT_BY_SELECTOR = ("ID", "SB_1")
     RESIDENCE_STATE_OPTION = ("XPATH", "//select[@id='SB_1']/optgroup/option[@value='D176.V9-level1']")
     AND_BY_1 = ("ID", "SB_2")

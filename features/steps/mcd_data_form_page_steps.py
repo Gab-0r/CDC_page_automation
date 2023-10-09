@@ -12,8 +12,10 @@ def fill_form(context):
 
 @step("the user clicks on send button")
 def click_send(context):
-    pass
+    mcd_data_form_page = McdDataFormPage(context.browser_interactions)
+    context.file_name = mcd_data_form_page.download_request()
 
 @step("the data is downloaded")
 def check_downloaded_data(context):
-    pass
+    mcd_data_form_page = McdDataFormPage(context.browser_interactions)
+    mcd_data_form_page.check_download()
