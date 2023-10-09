@@ -3,10 +3,10 @@ import time
 from utilities.browser_interactions import BrowserInteractions
 from pom.locators.mcd_data_form_page_locators import McdDataFormPageLocators as locators
 from pathlib import Path
+from dotenv import load_dotenv
+import os
 
-def wait_download(path: str):
-    secs = 0
-
+load_dotenv()
 
 
 class McdDataFormPage:
@@ -28,13 +28,13 @@ class McdDataFormPage:
         # For Section 3: Select demographics
         self.browser_interactions.click_element(locators.TEN_YEAR_AGE_GROUPS)
 
-        #For Section 4: Select time period of death
+        # For Section 4: Select time period of death
         self.browser_interactions.click_element(locators.YEAR_MONTH)
 
-        #For Section 7: Select multiple cause of death
+        # For Section 7: Select multiple cause of death
         self.browser_interactions.click_element(locators.MCD_ICD_10_CODES)
 
-        #For Section 8: Other Options
+        # For Section 8: Other Options
         self.browser_interactions.click_element(locators.EXPORT_RESULTS_CB)
         self.browser_interactions.click_element(locators.SHOW_ZERO_VALUES_CB)
         self.browser_interactions.click_element(locators.SHOW_SUPPRESSED_VALUES_CB)
@@ -42,9 +42,22 @@ class McdDataFormPage:
     def download_request(self):
         title_name = self.browser_interactions.get_element(locators.FORM_TITLE).text
         file_name = title_name.replace(" Request", ".txt")
-        print(file_name)
         self.browser_interactions.click_element(locators.SEND_BUTTON)
-        time.sleep(5)
-        Path(f"/Users/juan.orozco/Downloads/{file_name}").rename(
-            f"/Users/juan.orozco/Desktop/Test automation/CDC_page_automation/downloads/{title_name}")
+
+        wait = True
+        while wait:
+            if os.path.exists(f"/Users/juan.orozco/Downloads/{file_name}"):
+                wait = False
+            else:
+                continue
+
+        Path(os.getenv("DEFAULT_DOWNLOAD_DIR") + file_name).rename(
+            os.getcwd() + f"/downloads/{file_name}"
+        )
         return file_name
+
+    def check_download(self, file_name):
+        if os.path.exists(os.getcwd() + f"/downloads/{file_name}"):
+            return True
+        else:
+            return False

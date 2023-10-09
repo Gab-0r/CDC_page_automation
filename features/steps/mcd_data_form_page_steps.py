@@ -15,7 +15,8 @@ def click_send(context):
     mcd_data_form_page = McdDataFormPage(context.browser_interactions)
     context.file_name = mcd_data_form_page.download_request()
 
+
 @step("the data is downloaded")
 def check_downloaded_data(context):
     mcd_data_form_page = McdDataFormPage(context.browser_interactions)
-    mcd_data_form_page.check_download()
+    assert mcd_data_form_page.check_download(context.file_name), "file downloaded not found"
