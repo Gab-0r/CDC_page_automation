@@ -32,5 +32,3 @@ class McdDataFormPage:
         self.browser_interactions.click_element(locators.EXPORT_RESULTS_CB)
         self.browser_interactions.click_element(locators.SHOW_ZERO_VALUES_CB)
         self.browser_interactions.click_element(locators.SHOW_SUPPRESSED_VALUES_CB)
-
-        time.sleep(5)
