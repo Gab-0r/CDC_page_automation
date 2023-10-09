@@ -12,3 +12,4 @@ def go_to_cdc_page(context):
     index_page.open_index_page(os.getenv("URL"))
 
 
+
