@@ -5,4 +5,5 @@ class McdDataFormPage:
     def __init__(self, browser_interactions: BrowserInteractions):
         self.browser_interactions = browser_interactions
 
-
+    def fill_fields(self):
+        pass

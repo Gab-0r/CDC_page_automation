@@ -6,7 +6,8 @@ import os
 
 @step("the user fills the form")
 def fill_form(context):
-    pass
+    mcd_data_form_page = McdDataFormPage(context.browser_interactions)
+    mcd_data_form_page.fill_fields()
 
 
 @step("the user clicks on send button")
