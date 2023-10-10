@@ -43,18 +43,14 @@ class McdDataFormPage:
         title_name = self.browser_interactions.get_element(locators.FORM_TITLE).text
         file_name = title_name.replace(" Request", ".txt")
         self.browser_interactions.click_element(locators.SEND_BUTTON)
-
-        wait = True
-        while wait:
-            if os.path.exists(os.getenv("DEFAULT_DOWNLOAD_DIR") + file_name):
-                wait = False
-            else:
-                continue
-
-        Path(os.getenv("DEFAULT_DOWNLOAD_DIR") + file_name).rename(
-            os.getcwd() + f"/downloads/{file_name}"
-        )
-        return file_name
+        self.browser_interactions.element_is_invisible(locators.PROGRESS_BAR)
+        if self.browser_interactions.is_download_finished_in(30):
+            Path(os.getenv("DEFAULT_DOWNLOAD_DIR") + file_name).rename(
+                os.getcwd() + f"/downloads/{file_name}"
+            )
+            return file_name
+        else:
+            return None
 
     def check_download(self, file_name):
         if os.path.exists(os.getcwd() + f"/downloads/{file_name}"):

@@ -17,3 +17,4 @@ class McdDataFormPageLocators:
     SHOW_ZERO_VALUES_CB = ("ID", "CO_show_zeros")
     SHOW_SUPPRESSED_VALUES_CB = ("ID", "CO_show_suppressed")
     SEND_BUTTON = ("XPATH", "//div[@class='footer-buttons']/input[@value='Send']")
+    PROGRESS_BAR = ("ID", "progress-bar")

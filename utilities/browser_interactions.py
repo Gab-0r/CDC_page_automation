@@ -21,6 +21,17 @@ def get_locator(raw_locator: tuple) -> tuple:
     return strategies[strategy], selector
 
 
+def downloads_finished(driver: Chrome):
+    if not driver.current_url.startswith("chrome://downloads"):
+        driver.get("chrome://downloads")
+    return driver.execute_script("""
+        var items = document.querySelector('downloads-manager')
+            .shadowRoot.getElementById('downloadsList').items;
+        if (items.every(e => e.state === "COMPLETE"))
+            return items.map(e => e.fileUrl || e.file_url);
+    """)
+
+
 # TODO: Exceptions and raises for methods that need them
 class BrowserInteractions:
     def __init__(self, driver: Chrome, time_out: int):
@@ -167,4 +178,22 @@ class BrowserInteractions:
             return False
         else:
             element.send_keys(file)
+            return True
+
+    def element_is_invisible(self, raw_locator: tuple):
+        try:
+            WebDriverWait(self._driver, self.time_out).until(
+                EC.invisibility_of_element_located(get_locator(raw_locator))
+            )
+        except:
+            return False
+        else:
+            return True
+
+    def is_download_finished_in(self, seconds: int):
+        try:
+            WebDriverWait(self._driver, seconds).until(downloads_finished)
+        except:
+            return False
+        else:
             return True
