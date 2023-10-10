@@ -6,6 +6,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 
+
 load_dotenv()
 
 
@@ -45,7 +46,8 @@ class McdDataFormPage:
         self.browser_interactions.click_element(locators.SEND_BUTTON)
         self.browser_interactions.element_is_invisible(locators.PROGRESS_BAR)
         if self.browser_interactions.is_download_finished_in(30):
-            Path(os.getenv("DEFAULT_DOWNLOAD_DIR") + file_name).rename(
+            user_home = os.path.expanduser("~")
+            Path(f"{user_home}/Downloads/{file_name}").rename(
                 os.getcwd() + f"/downloads/{file_name}"
             )
             return file_name
