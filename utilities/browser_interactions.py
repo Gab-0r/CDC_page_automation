@@ -40,7 +40,7 @@ class BrowserInteractions:
         :param time_out: Number of milliseconds before time out
         """
         self._driver = driver
-        self.time_out = time_out
+        self.time_out = int(time_out)
 
     def open_page(self, url: str):
         """Takes a url and call method to visit the page
