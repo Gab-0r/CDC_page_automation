@@ -54,7 +54,6 @@ class McdDataFormPage:
             file_name_without_spaces = file_name.replace(' ', '_')
             file_name_without_spaces = file_name_without_spaces.replace(',', '')
             clean_downloaded_file(file_name, file_name_without_spaces)
-            # Path(os.getcwd() + f"/downloads/{file_name}").rename(os.getcwd() + f"/downloads/{file_name_without_spaces}")
             return file_name_without_spaces
         else:
             return None

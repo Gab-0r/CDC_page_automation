@@ -26,7 +26,7 @@ def upload_file_to_blob(file_name):
 def clean_downloaded_file(input_file_name: str, output_file_name: str):
     # Define the input file and output file paths
     input_file_path = os.getcwd() + f"/downloads/{input_file_name}"
-    output_file_path = os.getcwd() +  f"/downloads/{output_file_name}"
+    output_file_path = os.getcwd() + f"/downloads/{output_file_name}"
     # Initialize a flag to indicate when to stop reading lines
     stop_reading = False
     # Open the input and output files
@@ -45,3 +45,13 @@ def clean_downloaded_file(input_file_name: str, output_file_name: str):
     input_file.close()
     output_file.close()
 
+    #Delete the last empty line
+    with open(output_file_path) as f_input:
+        data = f_input.read().rstrip('\n')
+
+    with open(output_file_path, 'w') as f_output:
+        f_output.write(data)
+    output_file.close()
+
+    # delete the input file
+    os.remove(input_file_path)
