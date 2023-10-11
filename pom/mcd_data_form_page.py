@@ -4,6 +4,7 @@ from utilities.browser_interactions import BrowserInteractions
 from pom.locators.mcd_data_form_page_locators import McdDataFormPageLocators as locators
 from pathlib import Path
 from dotenv import load_dotenv
+from utilities.functions import clean_downloaded_file
 import os
 
 
@@ -52,7 +53,8 @@ class McdDataFormPage:
             )
             file_name_without_spaces = file_name.replace(' ', '_')
             file_name_without_spaces = file_name_without_spaces.replace(',', '')
-            Path(os.getcwd() + f"/downloads/{file_name}").rename(os.getcwd() + f"/downloads/{file_name_without_spaces}")
+            clean_downloaded_file(file_name, file_name_without_spaces)
+            # Path(os.getcwd() + f"/downloads/{file_name}").rename(os.getcwd() + f"/downloads/{file_name_without_spaces}")
             return file_name_without_spaces
         else:
             return None

@@ -22,3 +22,26 @@ def upload_file_to_blob(file_name):
     with open(file_path, "rb") as data:
         blob_client.upload_blob(data, overwrite=True)
 
+
+def clean_downloaded_file(input_file_name: str, output_file_name: str):
+    # Define the input file and output file paths
+    input_file_path = os.getcwd() + f"/downloads/{input_file_name}"
+    output_file_path = os.getcwd() +  f"/downloads/{output_file_name}"
+    # Initialize a flag to indicate when to stop reading lines
+    stop_reading = False
+    # Open the input and output files
+    with open(input_file_path, "r") as input_file, open(output_file_path, "w") as output_file:
+        # Loop through each line in the input file
+        for line in input_file:
+            # Check if the "---" delimiter is found
+            if "---" in line:
+                # Set the flag to stop reading
+                stop_reading = True
+            # Check if we should stop reading lines
+            if not stop_reading:
+                # Write the line to the output file
+                output_file.write(line)
+    # Close the input and output files
+    input_file.close()
+    output_file.close()
+
