@@ -50,7 +50,10 @@ class McdDataFormPage:
             Path(f"{user_home}/Downloads/{file_name}").rename(
                 os.getcwd() + f"/downloads/{file_name}"
             )
-            return file_name
+            file_name_without_spaces = file_name.replace(' ', '_')
+            file_name_without_spaces = file_name_without_spaces.replace(',', '')
+            Path(os.getcwd() + f"/downloads/{file_name}").rename(os.getcwd() + f"/downloads/{file_name_without_spaces}")
+            return file_name_without_spaces
         else:
             return None
 
