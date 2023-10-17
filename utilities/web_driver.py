@@ -10,9 +10,11 @@ class WebDriverManager:
         if self.driver_name == "Chrome headless":
             options = ChromeOptions()
             options.add_argument("--headless=new")
-            options.add_argument("--start-maximized")
             driver = Chrome(options=options)
             return driver
 
         elif self.driver_name == "Chrome":
-            return Chrome()
+            options = ChromeOptions()
+            options.add_argument("--start-maximized")
+            driver = Chrome(options=options)
+            return driver
