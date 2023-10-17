@@ -7,6 +7,8 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from langdetect import detect_langs
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
 
 
 def get_locator(raw_locator: tuple) -> tuple:
@@ -197,3 +199,14 @@ class BrowserInteractions:
             return False
         else:
             return True
+
+    def multi_select(self, raw_locator1, raw_locator2, raw_locator3):
+        element1 = WebDriverWait(self._driver, self.time_out).until(
+            EC.element_to_be_clickable(get_locator(raw_locator1)))
+        element2 = WebDriverWait(self._driver, self.time_out).until(
+            EC.element_to_be_clickable(get_locator(raw_locator2)))
+        element3 = WebDriverWait(self._driver, self.time_out).until(
+            EC.element_to_be_clickable(get_locator(raw_locator3)))
+        ActionChains(self._driver).key_down(Keys.COMMAND).click(element1).key_up(Keys.CONTROL).perform()
+        ActionChains(self._driver).key_down(Keys.COMMAND).click(element2).key_up(Keys.CONTROL).perform()
+        ActionChains(self._driver).key_down(Keys.COMMAND).click(element3).key_up(Keys.CONTROL).perform()

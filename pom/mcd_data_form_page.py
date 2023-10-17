@@ -23,6 +23,8 @@ class McdDataFormPage:
         self.browser_interactions.click_element(locators.YEAR_OPTION)
         self.browser_interactions.click_element(locators.AND_BY_2)
         self.browser_interactions.click_element(locators.MONTH_OPTION)
+        self.browser_interactions.click_element(locators.AND_BY_3)
+        self.browser_interactions.click_element(locators.TEN_YEARS_OPTION)
 
         # For Section 2: Select location
         self.browser_interactions.click_element(locators.RESIDENCE_STATES)
@@ -30,8 +32,10 @@ class McdDataFormPage:
         # For Section 3: Select demographics
         self.browser_interactions.click_element(locators.TEN_YEAR_AGE_GROUPS)
 
-        # For Section 4: Select time period of death
+        # For Section 4: Select time period of death and select 2021, 2022 and 2023 years
         self.browser_interactions.click_element(locators.YEAR_MONTH)
+        self.browser_interactions.click_element(locators.ALL_DATES_OPTION)
+        self.browser_interactions.multi_select(locators.OPTION_2021, locators.OPTION_2022, locators.OPTION_2023)
 
         # For Section 7: Select multiple cause of death
         self.browser_interactions.click_element(locators.MCD_ICD_10_CODES)
@@ -46,7 +50,7 @@ class McdDataFormPage:
         file_name = title_name.replace(" Request", ".txt")
         self.browser_interactions.click_element(locators.SEND_BUTTON)
         self.browser_interactions.element_is_invisible(locators.PROGRESS_BAR)
-        if self.browser_interactions.is_download_finished_in(30):
+        if self.browser_interactions.is_download_finished_in(60):
             user_home = os.path.expanduser("~")
             Path(f"{user_home}/Downloads/{file_name}").rename(
                 os.getcwd() + f"/downloads/{file_name}"
