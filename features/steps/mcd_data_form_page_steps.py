@@ -24,3 +24,9 @@ def check_downloaded_data(context):
     mcd_data_form_page = McdDataFormPage(context.browser_interactions)
     assert mcd_data_form_page.check_download(context.file_name), "file downloaded not found"
     upload_file_to_blob(context.file_name)
+
+
+@step("the user fills the 1999-2020 form")
+def fill_1999_2020_form(context):
+    mcd_data_form_page = McdDataFormPage(context.browser_interactions)
+    mcd_data_form_page.fill_1999_2020_fields()

@@ -50,7 +50,7 @@ class McdDataFormPage:
         file_name = title_name.replace(" Request", ".txt")
         self.browser_interactions.click_element(locators.SEND_BUTTON)
         self.browser_interactions.element_is_invisible(locators.PROGRESS_BAR)
-        if self.browser_interactions.is_download_finished_in(60):
+        if self.browser_interactions.is_download_finished_in(120):
             user_home = os.path.expanduser("~")
             Path(f"{user_home}/Downloads/{file_name}").rename(
                 os.getcwd() + f"/downloads/{file_name}"
@@ -59,6 +59,7 @@ class McdDataFormPage:
             file_name_without_spaces = file_name_without_spaces.replace(',', '')
             clean_downloaded_file(file_name, file_name_without_spaces)
             return file_name_without_spaces
+
         else:
             return None
 
@@ -67,3 +68,31 @@ class McdDataFormPage:
             return True
         else:
             return False
+
+    def fill_1999_2020_fields(self):
+        # For Section 1: Organize table layout
+        self.browser_interactions.click_element(locators.GROUP_RESULT_BY_SELECTOR)
+        self.browser_interactions.click_element(locators.CENSUS_REGION)
+        self.browser_interactions.click_element(locators.AND_BY_1)
+        self.browser_interactions.click_element(locators.YEAR_OPTION_1999_2020)
+        self.browser_interactions.click_element(locators.AND_BY_2)
+        self.browser_interactions.click_element(locators.MONTH_OPTION_1999_2020)
+
+        # For Section 2: Select location
+        self.browser_interactions.click_element(locators.STATES_OPTION)
+        self.browser_interactions.click_element(locators.URBANIZATION_2013)
+
+        # For Section 3: Select demographics
+        self.browser_interactions.click_element(locators.TEN_YEARS_GROUP_1999_2020)
+
+        # For Section 7: Select multiple cause of death
+        self.browser_interactions.click_element(locators.MCD_ICD_10_CODES_1999_2020)
+
+        # For Section 8: Other Options
+        self.browser_interactions.click_element(locators.EXPORT_RESULTS_CB)
+        self.browser_interactions.click_element(locators.SHOW_ZERO_VALUES_CB)
+        self.browser_interactions.click_element(locators.SHOW_SUPPRESSED_VALUES_CB)
+
+        time.sleep(5)
+
+

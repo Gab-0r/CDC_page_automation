@@ -10,3 +10,7 @@ class McdDataPage:
     def go_to_mcd_data_request_page(self):
         self.browser_interactions.click_element(McdDataPageLocators.DATA_REQUEST_BUTTON)
         return McdDataRequestPage(self.browser_interactions)
+
+    def go_to_mcd_data_request_1999_2020(self):
+        self.browser_interactions.click_element(McdDataPageLocators.DATA_REQUEST_1999_2020_BUTTON)
+        return McdDataRequestPage(self.browser_interactions)
