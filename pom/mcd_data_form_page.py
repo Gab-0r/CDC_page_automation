@@ -67,3 +67,23 @@ class McdDataFormPage:
             return True
         else:
             return False
+
+    def fill_fields_1999_2004(self):
+        # For Section 1: Organize table layout
+            # By default
+
+        # For Section 2: Select location
+            # By default
+
+        # For Section 3: Select years and demographics
+            # By default
+
+        # For Section 4: Select underlying cause of death
+            # By default
+
+        # For Section 5: Select multiple cause of death
+
+        # For Section 6: Other Options
+        self.browser_interactions.click_element(locators.EXPORT_RESULTS_CB)
+        self.browser_interactions.click_element(locators.SHOW_ZERO_VALUES_CB)
+        self.browser_interactions.click_element(locators.SHOW_SUPPRESSED_VALUES_CB)

@@ -23,4 +23,10 @@ def click_send(context):
 def check_downloaded_data(context):
     mcd_data_form_page = McdDataFormPage(context.browser_interactions)
     assert mcd_data_form_page.check_download(context.file_name), "file downloaded not found"
-    upload_file_to_blob(context.file_name)
+    #upload_file_to_blob(context.file_name)
+
+
+@step("the user fills the form of 1999-2004")
+def fill_form_1999_2004(context):
+    mcd_data_form_page = McdDataFormPage(context.browser_interactions)
+    mcd_data_form_page.fill_fields_1999_2004()
