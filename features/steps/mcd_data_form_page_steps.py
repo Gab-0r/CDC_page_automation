@@ -30,3 +30,9 @@ def check_downloaded_data(context):
 def fill_form_1999_2004(context):
     mcd_data_form_page = McdDataFormPage(context.browser_interactions)
     mcd_data_form_page.fill_fields_1999_2004()
+
+
+@step("the user fills the 1999-2020 form")
+def fill_1999_2020_form(context):
+    mcd_data_form_page = McdDataFormPage(context.browser_interactions)
+    mcd_data_form_page.fill_1999_2020_fields()
