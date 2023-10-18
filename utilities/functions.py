@@ -54,4 +54,5 @@ def clean_downloaded_file(input_file_name: str, output_file_name: str):
     output_file.close()
 
     # delete the input file
+    print("file to delete: " + input_file_path)
     os.remove(input_file_path)
