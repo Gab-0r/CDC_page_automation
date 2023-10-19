@@ -11,10 +11,12 @@ class WebDriverManager:
             options = ChromeOptions()
             options.add_argument("--headless=new")
             driver = Chrome(options=options)
+            driver.set_page_load_timeout(500000)
             return driver
 
         elif self.driver_name == "Chrome":
             options = ChromeOptions()
             options.add_argument("--start-maximized")
             driver = Chrome(options=options)
+            driver.set_page_load_timeout(500000)
             return driver

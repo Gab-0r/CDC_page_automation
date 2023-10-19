@@ -9,6 +9,7 @@ Background: Go to request form
   Given the user clicks on Data request in Provisional Multiple Cause of Death Data section
   Given the user clicks on I agree button in About section
 
+@data_download
 Scenario: Make a request to download data
   When the user fills the form
   When the user clicks on send button

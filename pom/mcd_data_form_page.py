@@ -32,10 +32,8 @@ class McdDataFormPage:
         # For Section 3: Select demographics
         self.browser_interactions.click_element(locators.TEN_YEAR_AGE_GROUPS)
 
-        # For Section 4: Select time period of death and select 2021, 2022 and 2023 years
+        # For Section 4: Select time period of death
         self.browser_interactions.click_element(locators.YEAR_MONTH)
-        self.browser_interactions.click_element(locators.ALL_DATES_OPTION)
-        self.browser_interactions.multi_select(locators.OPTION_2021, locators.OPTION_2022, locators.OPTION_2023)
 
         # For Section 7: Select multiple cause of death
         self.browser_interactions.click_element(locators.MCD_ICD_10_CODES)
