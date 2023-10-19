@@ -7,5 +7,5 @@ load_dotenv()
 
 
 def before_scenario(context, scenario):
-    web_driver = WebDriverManager(os.getenv("CHROME_NAME")).create_driver()
+    web_driver = WebDriverManager(os.getenv("CHROME_NAME"), float(os.getenv("LOAD_TIMEOUT"))).create_driver()
     context.browser_interactions = BrowserInteractions(web_driver, 10)
